@@ -1,7 +1,8 @@
 ---
 import type { Channel } from '../types/channel';
 const { channel } = Astro.props as { channel: Channel };
-const canonical = `https://telegram-channel-landing.workers.dev/c/${channel.slug}`;
+const site = Astro.site.href;
+const canonical = `${site}c/${channel.slug}`;
 ---
 <html lang="en">
 <head>

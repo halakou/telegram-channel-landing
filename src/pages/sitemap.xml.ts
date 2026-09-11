@@ -2,7 +2,7 @@ import { channels } from '../data/channels';
 
 export async function GET() {
   const urls = channels.map(c =>
-    `  <url>\n    <loc>https://telegram-channel-landing.workers.dev/c/${c.slug}</loc>\n  </url>`
+    `  <url>\n    <loc>https://telegram-channel-landing.halakou.workers.dev/c/${c.slug}</loc>\n  </url>`
   ).join('\n');
 
   return new Response(

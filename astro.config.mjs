@@ -8,5 +8,5 @@ export default defineConfig({
     platformProxy: { enabled: true },
   }),
   integrations: [tailwind()],
-  site: 'https://telegram-channel-landing.workers.dev',
+  site: 'https://telegram-channel-landing.halakou.workers.dev',
 });
