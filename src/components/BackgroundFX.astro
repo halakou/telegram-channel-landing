@@ -1,0 +1,18 @@
+---
+const { accentRgb } = Astro.props;
+---
+<div aria-hidden="true" style="position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;">
+  <div style="position: absolute; top: -20%; left: -10%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba({accentRgb}, 0.06) 0%, transparent 70%); animation: float-slow 20s ease-in-out infinite alternate;" />
+  <div style="position: absolute; bottom: -20%; right: -10%; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba({accentRgb}, 0.04) 0%, transparent 70%); animation: float-slow 25s ease-in-out infinite alternate-reverse;" />
+</div>
+
+<style>
+  @keyframes float-slow {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(3%, -3%); }
+    100% { transform: translate(-2%, 2%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    div[style*="animation"] { animation: none !important; }
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+const { card } = Astro.props;
+const viewsFormatted = card.views != null && card.views >= 1000 ? `${(card.views / 1000).toFixed(1)}K` : String(card.views ?? '');
+---
+<article style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s, border-color 0.2s;" onmouseenter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), 0.3)'; }} onmouseleave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--border)'; }}>
+  <div style="font-size: 1.5rem; margin-bottom: 0.75rem;">{card.emoji}</div>
+  <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.4;">{card.title}</h3>
+  <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">{card.excerpt}</p>
+  <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.8rem;">
+    <span>{card.date}</span>
+    {card.views != null && <span>👁 {viewsFormatted} views</span>}
+  </div>
+</article>

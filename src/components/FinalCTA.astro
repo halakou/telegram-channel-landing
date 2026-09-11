@@ -1,0 +1,26 @@
+---
+const { channel } = Astro.props;
+const accentColor = channel.theme.accent;
+const accentRgb = channel.theme.accentRgb;
+---
+<section aria-label="Call to action" style="max-width: 640px; margin: 0 auto; padding: 3rem 1.5rem; text-align: center;">
+  <div style="background: linear-gradient(135deg, rgba({accentRgb}, 0.15) 0%, rgba({accentRgb}, 0.05) 100%); border: 1px solid rgba({accentRgb}, 0.2); border-radius: 20px; padding: 3rem 2rem;">
+    <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-primary);">Ready to join?</h2>
+    <p style="color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">Join {channel.name} on Telegram and never miss a post.</p>
+    <a
+      href={channel.telegramUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: {accentColor}; color: white; text-decoration: none; border-radius: 14px; font-weight: 700; font-size: 1.1rem; transition: all 0.2s; box-shadow: 0 4px 25px rgba({accentRgb}, 0.3);"
+      onmouseenter={e => { e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)'; }}
+      onmouseleave={e => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; }}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.338c.24.002.388.014.502.02.135.006.264.03.388.07.124.04.212.093.3.178.09.085.15.188.21.32.06.13.09.27.11.43.02.16.03.33.03.51 0 .18-.01.35-.03.51a2.5 2.5 0 0 1-.11.43 1.1 1.1 0 0 1-.21.32 1.3 1.3 0 0 1-.3.18 1.7 1.7 0 0 1-.39.07c-.125.01-.25.014-.38.02l-6.5 4.25a.8.8 0 0 1-.1.03.36.36 0 0 1-.1.01.3.3 0 0 1-.1-.03.3.3 0 0 1-.1-.03c-.03-.02-.05-.04-.07-.06l-.06-.06a1.8 1.8 0 0 1-.05-.07l-.04-.08-.03-.09-.02-.09a1.2 1.2 0 0 1-.01-.1c0-.03 0-.06.01-.09l.02-.09.04-.08c.01-.03.03-.05.05-.07.02-.02.05-.04.07-.06l.06-.06 7.5-5.5a.4.4 0 0 0 .08-.07.3.3 0 0 0 .05-.08.3.3 0 0 0 .02-.09c0-.03 0-.06-.01-.09a.8.8 0 0 0-.02-.09c-.01-.03-.03-.05-.04-.08a.6.6 0 0 0-.06-.07.7.7 0 0 0-.07-.06.8.8 0 0 0-.08-.05.9.9 0 0 0-.09-.04.9.9 0 0 0-.1-.02.9.9 0 0 0-.1-.01c-.03 0-.06 0-.09.01a.8.8 0 0 0-.09.02l-10 4.5a.8.8 0 0 0-.1.05.7.7 0 0 0-.09.06.7.7 0 0 0-.08.08.7.7 0 0 0-.06.09.7.7 0 0 0-.04.1.7.7 0 0 0-.02.1c0 .03 0 .06.01.09a.8.8 0 0 0 .02.1l.04.09.05.08c.02.03.05.05.07.07l.07.06c.03.02.05.04.08.05l10 5.5a1 1 0 0 0 .1.04.9.9 0 0 0 .1.02c.03.01.07.01.1.01s.06 0 .1-.01a.9.9 0 0 0 .1-.02.9.9 0 0 0 .1-.04l8.5-5.5c.03-.02.06-.04.08-.07a.7.7 0 0 0 .07-.09.7.7 0 0 0 .04-.1.8.8 0 0 0 .02-.1c0-.03 0-.06-.01-.09a.8.8 0 0 0-.02-.1l-.04-.09a.7.7 0 0 0-.05-.08.6.6 0 0 0-.07-.07.7.7 0 0 0-.08-.06.8.8 0 0 0-.09-.04z"/>
+      </svg>
+      Join @channel on Telegram
+    </a>
+  </div>
+</section>
+
+

@@ -1,0 +1,14 @@
+---
+const { isDemo } = Astro.props;
+---
+<footer style="max-width: 640px; margin: 0 auto; padding: 2rem 1.5rem 3rem; text-align: center;">
+  <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; color: var(--text-muted); font-size: 0.85rem;">
+    {isDemo && (
+      <div style="color: #facc15; font-weight: 600; margin-bottom: 0.75rem;">
+        ⚠️ Demo channel — placeholder data for illustration purposes only
+      </div>
+    )}
+    <p>Built with Astro + Cloudflare Workers</p>
+    <p style="margin-top: 0.25rem;">© {new Date().getFullYear()} Channel Landing Platform</p>
+  </div>
+</footer>

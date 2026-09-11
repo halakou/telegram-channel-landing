@@ -1,0 +1,105 @@
+---
+import DemoBadge from './DemoBadge.astro';
+import CopyButton from './CopyButton.astro';
+
+const { channel } = Astro.props;
+---
+<section aria-label="Hero" style="position: relative;">
+  <div class="glow-wrapper">
+    <div
+      class="glow-base"
+      style="background: radial-gradient(60% 50% at 50% 40%, rgba(var(--accent-rgb), 0.2) 0%, transparent 80%);"
+    />
+    <div class="glow-base glow-fade" />
+  </div>
+
+  <div style="position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 4rem 1.5rem 3rem; text-align: center;">
+    <!-- Avatar -->
+    <div style="margin-bottom: 1.5rem;">
+      <div
+        style="width: 96px; height: 96px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: var(--surface); border: 2px solid rgba(var(--accent-rgb), 0.3); box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.15);"
+      >
+        {channel.avatarEmoji}
+      </div>
+    </div>
+
+    <!-- DEMO Badge -->
+    <DemoBadge class="fade-up" style="margin: 0 auto 1rem;" />
+
+    <!-- Name & Username -->
+    <h1 class="fade-up" style="font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+      {channel.name}
+    </h1>
+    <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">@{channel.username}</p>
+    <p class="fade-up" style="color: var(--text-secondary); font-size: 1.1rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7;">
+      {channel.description}
+    </p>
+
+    <!-- Member Count -->
+    <div class="fade-up" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2.5rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -0.125em; margin-right: 0.25rem;">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      {channel.stats.membersLabel}
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="fade-up" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a
+        href={channel.telegramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: channel.accent; color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1rem; transition: all 0.2s; box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.3);"
+        onmouseenter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = `0 6px 30px rgba(var(--accent-rgb), 0.4)`; }}
+        onmouseleave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = `0 4px 20px rgba(var(--accent-rgb), 0.3)`; }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.338c.24.002.388.014.502.02.135.006.264.03.388.07.124.04.212.093.3.178.09.085.15.188.21.32.06.13.09.27.11.43.02.16.03.33.03.51 0 .18-.01.35-.03.51a2.5 2.5 0 0 1-.11.43 1.1 1.1 0 0 1-.21.32 1.3 1.3 0 0 1-.3.18 1.7 1.7 0 0 1-.39.07c-.125.01-.25.014-.38.02l-6.5 4.25a.8.8 0 0 1-.1.03.36.36 0 0 1-.1.01.3.3 0 0 1-.1-.03.3.3 0 0 1-.1-.03c-.03-.02-.05-.04-.07-.06l-.06-.06a1.8 1.8 0 0 1-.05-.07l-.04-.08-.03-.09-.02-.09a1.2 1.2 0 0 1-.01-.1c0-.03 0-.06.01-.09l.02-.09.04-.08c.01-.03.03-.05.05-.07.02-.02.05-.04.07-.06l.06-.06 7.5-5.5a.4.4 0 0 0 .08-.07.3.3 0 0 0 .05-.08.3.3 0 0 0 .02-.09c0-.03 0-.06-.01-.09a.8.8 0 0 0-.02-.09c-.01-.03-.03-.05-.04-.08a.6.6 0 0 0-.06-.07.7.7 0 0 0-.07-.06.8.8 0 0 0-.08-.05.9.9 0 0 0-.09-.04.9.9 0 0 0-.1-.02.9.9 0 0 0-.1-.01c-.03 0-.06 0-.09.01a.8.8 0 0 0-.09.02l-10 4.5a.8.8 0 0 0-.1.05.7.7 0 0 0-.09.06.7.7 0 0 0-.08.08.7.7 0 0 0-.06.09.7.7 0 0 0-.04.1.7.7 0 0 0-.02.1c0 .03 0 .06.01.09a.8.8 0 0 0 .02.1l.04.09.05.08c.02.03.05.05.07.07l.07.06c.03.02.05.04.08.05l10 5.5a1 1 0 0 0 .1.04.9.9 0 0 0 .1.02c.03.01.07.01.1.01s.06 0 .1-.01a.9.9 0 0 0 .1-.02.9.9 0 0 0 .1-.04l8.5-5.5c.03-.02.06-.04.08-.07a.7.7 0 0 0 .07-.09.7.7 0 0 0 .04-.1.8.8 0 0 0 .02-.1c0-.03 0-.06-.01-.09a.8.8 0 0 0-.02-.1l-.04-.09a.7.7 0 0 0-.05-.08.6.6 0 0 0-.07-.07.7.7 0 0 0-.08-.06.8.8 0 0 0-.09-.04z"/>
+        </svg>
+        Join on Telegram
+      </a>
+      <CopyButton url={channel.telegramUrl} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .glow-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .glow-base {
+    position: absolute;
+    inset: -20%;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float-slow 12s ease-in-out infinite alternate;
+  }
+  .glow-fade {
+    opacity: 0.3;
+    animation-delay: -6s;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+  .fade-up:nth-child(4) { animation-delay: 0.4s; }
+  .fade-up:nth-child(5) { animation-delay: 0.5s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow-base, .glow-fade { animation: none !important; }
+    .fade-up { animation: none !important; opacity: 1; transform: none !important; }
+  }
+</style>
+

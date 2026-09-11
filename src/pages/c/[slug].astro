@@ -1,0 +1,61 @@
+---
+import { MockChannelRepository } from '../../lib/mockChannelRepository';
+import ChannelLayout from '../../layouts/ChannelLayout.astro';
+import BackgroundFX from '../../components/BackgroundFX.astro';
+import ChannelHero from '../../components/ChannelHero.astro';
+import StatsBar from '../../components/StatsBar.astro';
+import WhyJoin from '../../components/WhyJoin.astro';
+import FeaturedPost from '../../components/FeaturedPost.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import QRSection from '../../components/QRSection.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import type { Channel } from '../../types/channel';
+
+export async function getStaticPaths() {
+  const repo = new MockChannelRepository();
+  const channels = await repo.listAll();
+  return channels.map(c => ({ params: { slug: c.slug }, props: { channel: c } }));
+}
+
+const { channel } = Astro.props as { channel: Channel };
+---
+<ChannelLayout channel={channel}>
+  <div style="position: relative; min-height: 100vh;">
+    <!-- Ambient background glow -->
+    <BackgroundFX accentRgb={channel.theme.accentRgb} />
+
+    <main style="position: relative; z-index: 1;">
+      <!-- 1. Hero Section -->
+      <ChannelHero channel={channel} />
+
+      <!-- 2. Stats Bar -->
+      <StatsBar stats={channel.stats} />
+
+      <!-- 3. Why This Channel -->
+      <WhyJoin highlights={channel.highlights} />
+
+      <!-- 4. Featured Post -->
+      <FeaturedPost post={channel.featuredPost} />
+
+      <!-- 5. Recent Content -->
+      <section aria-label="Recent content" style="max-width: 640px; margin: 0 auto; padding: 2rem 1.5rem 3rem;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">Recent content</h2>
+        <div style="display: grid; gap: 1rem;">
+          {channel.recentCards.map(card => (
+            <ContentCard card={card} />
+          ))}
+        </div>
+      </section>
+
+      <!-- 6. QR Section -->
+      <QRSection url={channel.telegramUrl} />
+
+      <!-- 7. Final CTA -->
+      <FinalCTA channel={channel} />
+
+      <!-- 8. Footer -->
+      <SiteFooter isDemo={channel.isDemo} />
+    </main>
+  </div>
+</ChannelLayout>

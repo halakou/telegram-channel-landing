@@ -1,0 +1,13 @@
+---
+// Props: class, style
+const { class: cls, style } = Astro.props;
+---
+<span class={cls} style={`display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.75rem; background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.25); border-radius: 999px; color: #facc15; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; ${style ?? ''}`}>
+  🧪 Demo
+</span>
+
+<style>
+  .fade-up { animation: fadeUp 0.4s ease-out both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .fade-up { animation: none !important; } }
+</style>

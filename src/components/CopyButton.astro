@@ -1,0 +1,43 @@
+---
+const { url } = Astro.props;
+let copied = false;
+---
+<button
+  id="copy-btn"
+  aria-label="Copy Telegram link"
+  style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.5rem; background: var(--surface); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s;"
+  onmouseenter={e => { e.currentTarget.style.borderColor = 'rgba(var(--accent-rgb), 0.3)'; e.currentTarget.style.color = 'var(--text-primary)'; }}
+  onmouseleave={e => { if (!copied) { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; } }}
+>
+  <span id="copy-icon">📋</span>
+  <span id="copy-label">Copy Link</span>
+</button>
+
+<script define:vars={{ url }}>
+  const btn = document.getElementById('copy-btn');
+  const label = document.getElementById('copy-label');
+  const icon = document.getElementById('copy-icon');
+
+  btn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      label.textContent = 'Copied!';
+      icon.textContent = '✅';
+      (btn as HTMLElement).style.borderColor = '#4ade80';
+      (btn as HTMLElement).style.color = '#4ade80';
+      setTimeout(() => {
+        label.textContent = 'Copy Link';
+        icon.textContent = '📋';
+        (btn as HTMLElement).style.borderColor = '';
+        (btn as HTMLElement).style.color = '';
+      }, 2000);
+    } catch {
+      label.textContent = 'Failed';
+      icon.textContent = '❌';
+      setTimeout(() => {
+        label.textContent = 'Copy Link';
+        icon.textContent = '📋';
+      }, 2000);
+    }
+  });
+</script>
